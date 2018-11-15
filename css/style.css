@@ -1,0 +1,342 @@
+body {
+	background: #f3f7fa;
+    font-family: 'Open Sans', sans-serif;
+    overflow-y: scroll;
+}
+
+.section {
+    display: flex;
+    width: 820px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.filter {
+    background: #fff;
+    width: 232px;
+    margin-right: 20px;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #4a4a4a;
+    box-shadow: 0px 5px 25px 0px rgba(91,137,164,0.1);
+}
+
+.filter__box {
+    margin-bottom: 30px;
+}
+
+.filter__box--no-padding {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+}
+
+.filter__caption {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.filter__buttons {
+    display: flex;
+}
+
+.filter__currency {
+    background: #fff;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 38px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #d2d5d6;
+    box-sizing: border-box;
+    color: #2196f3;
+    cursor: pointer;
+    transition: all, .3s;
+}
+
+.filter__currency:not(:first-child) {
+    margin-left: -2px;
+}
+
+.filter__currency:first-child {
+    border-radius: 5px 0px 0px 5px;
+}
+
+.filter__currency:last-child {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.filter__currency:hover {
+    border-color: #2196f3;
+    background: #f2fcff;
+    z-index: 1;
+}
+
+.filter__currency::selection {
+    background: none;
+}
+
+.filter__currency--active, .filter__currency--active:hover {
+    background: #2196f3;
+    border-color: #2196f3;
+    color: #fff;
+    z-index: 2;
+}
+
+.filter__currency-value::selection {
+    background: none;
+}
+
+.filter__stops {
+    color: #4a4a4a;
+    padding: 6.5px 16px;
+    transition: all, .3s;
+    cursor: pointer;
+    display: block;
+}
+
+.filter__stops label {
+    cursor: pointer;
+}
+
+.filter__stops label::selection {
+    background: none;
+}
+
+.filter__stops:hover {
+    background: #f1fcff;
+}
+
+.filter__stops:hover .filter__stops-only {
+    opacity: 1;
+}
+
+.filter__stops::selection {
+    background: none;
+}
+
+.filter__check-mark {
+    border: 1px solid #dee0e1;
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+
+.filter__check-mark i {
+    font-size: 10px;
+    position: absolute;
+    left: 1px;
+    right: 0;
+    top: 2px;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    color: #2196f3;
+}
+
+.filter__check-mark--checked {
+    border-color: #2196f3;
+}
+
+.filter__check-mark--checked i {
+    opacity: 1;
+}
+
+.filter___stops-caption {
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: top;
+    margin-left: 6px;
+    margin-top: 2px;
+}
+
+.filter__stops-only {
+    float: right;
+    font-size: 14px;
+    color: #2196f3;
+    opacity: 0;
+    transition: all, .3s;
+}
+
+.tickets {
+    width: 100%;
+    flex: 1;
+}
+
+.ticket {
+    width: 100%;
+    height: 150px;
+    background: white;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    box-shadow: 0px 5px 25px 0px rgba(91,137,164,0.1);
+}
+
+.ticket__action {
+    width: 160px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.ticket__action::selection {
+    background: none;
+}
+
+.ticket__action:after {
+    content: "";
+    display: block;
+    height: calc(100% + 12px);
+    width: 1px;
+    background: #eceff1;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.ticket__company-logo {
+    width: 120px;
+    height: 35px;
+    margin-bottom: 16px;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.ticket__company-logo::selection {
+    background: none;
+}
+
+.button {
+    background: #ff6d00;
+    color: white;
+    border-radius: 5px;
+    padding: 6px 10px;
+    line-height: 22px;
+    outline: none;
+    border: 0;
+    width: 100%;
+    font-size: 16px;
+    font-family: "Open Sans";
+    cursor: pointer;
+    box-shadow: 0px 1px 0px 0px #d64d08;
+    transition: all, .3s;
+}
+
+.button:hover {
+    border-bottom-color: transparent;
+    background-color: #faa760;
+}
+
+.button:active {
+    background-color: #ff6d00;
+    box-shadow: inset 0 1px 0 0 #d64d08;
+}
+
+.button__caption::selection, .button__value::selection {
+    background: none;
+}
+
+.button__value i {
+    font-size: 14px;
+    margin-left: -4px;
+}
+
+.ticket__info {
+    padding: 20px;
+    color: #4a4a4a;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info__departure {
+    padding-left: 6px;
+    width: 120px;
+}
+
+.info__time {
+	font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 5px;
+}
+
+.info__destination {
+	font-size: 12px;
+    margin-left: 2px;
+    font-weight: bold;
+}
+
+.info__date {
+    margin-top: 2px;
+    margin-left: 2px;
+    font-size: 12px;
+    color: #99a1a3;
+}
+
+.info__aeroport {
+    display: inline-block;
+}
+
+.info__city {
+	display: inline-block;
+    letter-spacing: 0.0325em;
+}
+
+.info__stops {
+    font-size: 10px;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 6px;
+    position: relative;
+    color: #8b9497;
+    padding-right: 6px;
+    flex-grow: 1;
+}
+
+.info__stops:before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -18px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background-image: url("../img/aeroplan-icon.svg");
+    background-position: right bottom 0px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.info__stops:after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: calc(100% + 35px);
+    background: #dee0e1;
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.info__arrival {
+    padding-right: 6px;
+    text-align: right;
+    width: 120px;
+}

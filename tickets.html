@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Avia sales</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+	<link rel="stylesheet" href="css/fontello.css">
+	<link rel="stylesheet" href="css/style.css">
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div id="app">
+	<div class="section">
+		<div class="filters">
+			<div class="filter">
+				<div class="filter__caption">Валюта</div>
+				<div class="filter__box">
+					<div class="filter__buttons">
+						<filter-currency v-for="currency in currencys" :item="currency"></filter-currency>
+					</div>
+				</div>
+				<div class="filter__caption">Количество пересадок</div>
+				<div class="filter__box filter__box--no-padding">
+					<filter-stops v-for="stop in stops.values" :item="stop"></filter-stops>
+				</div>
+			</div>
+		</div>
+		<div class="tickets">
+			<ticket v-for="ticket in tickets" v-bind:data="ticket" v-if="stops.current.includes(ticket.stops)"></ticket>
+		</div>
+	</div>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/tickets.js"></script>
+<script src="js/currencys.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
