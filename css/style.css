@@ -2,12 +2,15 @@ body {
 	background: #f3f7fa;
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
+    margin: 0;
 }
 
 .section {
     display: flex;
     width: 820px;
+    min-width: 320px;
     margin: 0 auto;
+    margin-top: 20px;
     flex-wrap: wrap;
 }
 
@@ -339,4 +342,98 @@ body {
     padding-right: 6px;
     text-align: right;
     width: 120px;
+}
+
+/***** MEDIA *****/
+@media (max-width: 840px) {
+
+.section {
+    width: 100%;
+    display: block;
+}
+
+.filter {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.filter__stops {
+    display: inline-block;
+}
+
+.filter__stops-only {
+    display: none;
+}
+
+}
+
+@media (max-width: 600px) {
+
+.ticket {
+    height: auto;
+    flex-direction: column-reverse;
+}
+
+.ticket__action {
+    width: calc(100% - 40px);
+    padding-bottom: 10px;
+}
+
+.ticket__company-logo {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    float: left;
+}
+
+.button {
+    width: 150px;
+    float: right;
+}
+
+.info__departure {
+    order: 1;
+}
+
+.info__stops {
+    order: 0;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.info__stops:before {
+    right: -8px;
+}
+
+.info__stops:after {
+    width: 100%;
+}
+
+.info__arrival {
+    order: 2;
+}
+
+}
+
+@media (max-width: 400px) {
+
+.ticket__action {
+    text-align: center;
+    padding-top: 0px;
+}
+
+.ticket__company-logo {
+    float: none;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 100%;
+}
+
+}
+
+@media (max-width: 320px) {
+    .section {
+
+    }
 }
