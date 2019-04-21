@@ -12,10 +12,6 @@ Vue.component("filter-currency", {
 
 Vue.component("filter-stops", {
 	props: ["item"],
-	model: {
-		prop: "checked",
-		event: "change"
-	},
 	methods: {
 		getStopValue() {
 			var item = this.$options.propsData.item;
