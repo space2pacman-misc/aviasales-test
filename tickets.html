@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Avia sales</title>
+	<title>Aviasales</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 	<link rel="stylesheet" href="css/fontello.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -9,31 +9,83 @@
 </head>
 <body>
 
-<div id="app">
-	<div class="section">
-		<div class="filters">
-			<div class="filter">
-				<div class="filter__caption">Валюта</div>
-				<div class="filter__box">
-					<div class="filter__buttons">
-						<filter-currency v-for="currency in currencys" :item="currency"></filter-currency>
+	<div id="app">
+		<div class="section">
+			<div class="filters">
+				<div class="filter">
+					<div class="filter__caption">Валюта</div>
+					<div class="filter__box">
+						<div class="filter__buttons">
+							<filter-currency v-for="currency in currencys" :item="currency"></filter-currency>
+						</div>
+					</div>
+					<div class="filter__caption">Количество пересадок</div>
+					<div class="filter__box filter__box--no-padding">
+						<filter-stops v-for="stop in stops.values" :item="stop"></filter-stops>
 					</div>
 				</div>
-				<div class="filter__caption">Количество пересадок</div>
-				<div class="filter__box filter__box--no-padding">
-					<filter-stops v-for="stop in stops.values" :item="stop"></filter-stops>
+			</div>
+			<div class="tickets">
+				<ticket v-for="ticket in tickets" :data="ticket" v-if="stops.current.includes(ticket.stops)"></ticket>
+			</div>
+		</div>
+	</div>
+
+	<template id="filter-stops">
+		<div class="filter__stops">
+			<label>
+				<label class="filter__check-mark" :class="{'filter__check-mark--checked': this.$root.stops.current.includes(item) || this.$root.stops.current.length == 4}">
+					<i class="icon-ok"></i>
+					<input v-if="item != -1" type="checkbox" :value="item" @change="getStopValue()" hidden>
+					<input v-if="item == -1" type="checkbox" @change="selectAllStops()" hidden>
+				</label>
+				<div class="filter___stops-caption">{{ item <= 0 ? item == -1 ? "Все" : "Без пересадок" : addDeclension(item) }}</div>
+			</label>
+			<div v-if="item != -1" class="filter__stops-only" @click="selectOnlyThisStops(item)">только</div>
+		</div>
+	</template>
+
+	<template id="filter-currency">
+		<label class="filter__currency" :class="{'filter__currency--active': this.$root.currency == item.name}">
+			<div class="filter__currency-value">{{ item.name }}</div>
+			<input type="radio" name="currency" :value="item.name" @change="getCurrencyValue()" hidden>
+		</label>
+	</template>
+
+	<template id="ticket">
+		<div class="ticket">
+			<div class="ticket__action">
+				<img :src="link + data.carrier + size" class="ticket__company-logo">
+				<button class="button">
+					<div class="button__caption">Купить</div>
+					<div class="button__value">за {{ addDischarge(data.price / this.$root.exchange) }}<i :class="'icon-' + this.$root.currencyFullName"></i></div>
+				</button>
+			</div>
+			<div class="ticket__info">
+				<div class="info__departure">
+					<div class="info__time">{{ data.departure_time }}</div>
+					<div class="info__destination">
+						<div class="info__aeroport">{{ data.origin }}</div>,
+						<div class="info__city">{{ data.origin_name }}</div>
+					</div>
+					<div class="info__date">{{ getDate(data.departure_date) }}</div>
+				</div>
+				<div class="info__stops">{{ addDeclension(data.stops) }}</div>
+				<div class="info__arrival">
+					<div class="info__time">{{ data.arrival_time }}</div>
+					<div class="info__destination">
+						<div class="info__city">{{ data.destination_name }}</div>,
+						<div class="info__aeroport">{{ data.destination }}</div>
+					</div>
+					<div class="info__date">{{ getDate(data.arrival_date) }}</div>
 				</div>
 			</div>
 		</div>
-		<div class="tickets">
-			<ticket v-for="ticket in tickets" v-bind:data="ticket" v-if="stops.current.includes(ticket.stops)"></ticket>
-		</div>
-	</div>
-</div>
+	</template>
 
-<script src="js/vue.min.js"></script>
-<script src="js/tickets.js"></script>
-<script src="js/currencys.js"></script>
-<script src="js/script.js"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/tickets.js"></script>
+	<script src="js/currencys.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>

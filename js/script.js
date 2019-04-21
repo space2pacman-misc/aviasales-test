@@ -7,12 +7,7 @@ Vue.component("filter-currency", {
 			this.$root.exchange = this.$options.propsData.item.exchange;
 		}
 	},
-	template: `
-		<label class="filter__currency" :class="{'filter__currency--active': this.$root.currency == item.name}">
-			<div class="filter__currency-value">{{ item.name }}</div>
-			<input type="radio" name="currency" :value="item.name" @change="getCurrencyValue()" hidden>
-		</label>
-	`
+	template: "#filter-currency"
 })
 
 Vue.component("filter-stops", {
@@ -40,19 +35,7 @@ Vue.component("filter-stops", {
     		this.$root.stops.current = [value];
     	}
 	},
-	template: `
-		<div class="filter__stops">
-			<label>
-				<label class="filter__check-mark" :class="{'filter__check-mark--checked': this.$root.stops.current.includes(item) || this.$root.stops.current.length == 4}">
-					<i class="icon-ok"></i>
-					<input v-if="item != -1" type="checkbox" :value="item" @change="getStopValue()" hidden>
-					<input v-if="item == -1" type="checkbox" @change="selectAllStops()" hidden>
-				</label>
-				<div class="filter___stops-caption">{{ item <= 0 ? item == -1 ? "Все" : "Без пересадок" : addDeclension(item) }}</div>
-			</label>
-			<div v-if="item != -1" class="filter__stops-only" @click="selectOnlyThisStops(item)">только</div>
-		</div>
-	`
+	template: "#filter-stops"
 })
 
 Vue.component("ticket", {
@@ -60,7 +43,9 @@ Vue.component("ticket", {
 	data() {
 		return {
 			link: "https://pics.avs.io/120/35/",
-			size: "@2x.png"
+			size: "@2x.png",
+			days: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+			months: ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"]
 		}
 	},
  	methods: {
@@ -73,38 +58,15 @@ Vue.component("ticket", {
     		if(value !== 0) {
     			return value + " Пересад" + (value<5? (value>1)? "ки" : "ка" : "ок");	
     		 }
+    	},
+    	getDate(value) {
+    		value = value.split(".");
+    		var date = new Date(value[1] + "." + value[0] + "." + value[2]);
+
+    		return date.getDate() + " " + this.months[date.getMonth()] + " " + date.getFullYear() + ", " + this.days[date.getDay()];
     	}
     },
-	template: `
-		<div class="ticket">
-			<div class="ticket__action">
-				<img :src="link + data.carrier + size" class="ticket__company-logo">
-				<button class="button">
-					<div class="button__caption">Купить</div>
-					<div class="button__value">за {{ addDischarge(data.price / this.$root.exchange) }}<i :class="'icon-' + this.$root.currencyFullName"></div>
-				</button>
-			</div>
-			<div class="ticket__info">
-				<div class="info__departure">
-					<div class="info__time">{{ data.departure_time }}</div>
-					<div class="info__destination">
-						<div class="info__aeroport">{{ data.origin }}</div>,
-						<div class="info__city">{{ data.origin_name }}</div>
-					</div>
-					<div class="info__date">9 окт 2018, Пт</div>
-				</div>
-				<div class="info__stops">{{ addDeclension(data.stops) }}</div>
-				<div class="info__arrival">
-					<div class="info__time">{{ data.arrival_time }}</div>
-					<div class="info__destination">
-						<div class="info__city">{{ data.destination_name }}</div>,
-						<div class="info__aeroport">{{ data.destination }}</div>
-					</div>
-					<div class="info__date">10 окт 2018, Пт</div>
-				</div>
-			</div>
-		</div>
-	`
+	template: "#ticket"
 })
 
 var app = new Vue({
