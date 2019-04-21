@@ -1,1 +1,1 @@
-(tickets.html)[https://space2pacman.github.io/aviasales-test/tickets.html]
+[tickets.html](https://space2pacman.github.io/aviasales-test/tickets.html)
