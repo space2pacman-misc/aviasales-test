@@ -5,12 +5,22 @@ body {
     margin: 0;
 }
 
+.logo {
+    display: block;
+    width: 82px;
+    height: 88px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
 .section {
     display: flex;
-    width: 820px;
+    width: 860px;
     min-width: 320px;
+    padding: 0px 20px;
+    box-sizing: border-box;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 30px;
     flex-wrap: wrap;
 }
 
@@ -345,7 +355,7 @@ body {
 }
 
 /***** MEDIA *****/
-@media (max-width: 840px) {
+@media (max-width: 860px) {
 
 .section {
     width: 100%;
@@ -430,10 +440,12 @@ body {
     width: 100%;
 }
 
+.info__departure {
+    width: 100px;
 }
 
-@media (max-width: 320px) {
-    .section {
+.info__arrival {
+    width: 100px;
+}
 
-    }
 }
