@@ -1,4 +1,4 @@
-# Тестовое задание Aviasales ([Link](https://space2pacman.github.io/aviasales-test/tickets.html))
+# Тестовое задание Aviasales ([Link](https://space2pacman-misc.github.io/aviasales-test/tickets.html))
 
 * :heavy_check_mark: Рендер билетов (#task1) (Vue.js)
 * :heavy_check_mark: Фильтрация билетов (#task2)
